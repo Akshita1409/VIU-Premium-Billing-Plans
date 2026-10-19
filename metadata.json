@@ -1,0 +1,6 @@
+{
+  "name": "StreamDemo - Behavioural Decision Architecture (Viu Premium A/B)",
+  "description": "Comparative behavioural experiment testing ethical decision architecture against dark pattern subscription sludge in streaming video membership plans.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
