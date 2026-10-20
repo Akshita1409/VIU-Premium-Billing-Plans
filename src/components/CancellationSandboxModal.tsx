@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   X,
   MousePointerClick,
@@ -30,13 +30,49 @@ export const CancellationSandboxModal: React.FC<CancellationSandboxModalProps> =
   const [surveyReason, setSurveyReason] = useState<string>('');
   const [sludgeCompleted, setSludgeCompleted] = useState(false);
 
+  // 5-minute billing cancellation timer (300 seconds)
+  const [cancelSecondsRemaining, setCancelSecondsRemaining] = useState(300);
+  const [timeUsed, setTimeUsed] = useState(0);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    setCancelSecondsRemaining(300); // 5 minutes
+    setEthicalCancelled(false);
+    setSludgeCompleted(false);
+
+    const timer = setInterval(() => {
+      setCancelSecondsRemaining((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [isOpen, activeTab]);
+
   if (!isOpen) return null;
+
+  const minutes = Math.floor(cancelSecondsRemaining / 60);
+  const seconds = cancelSecondsRemaining % 60;
+  const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  const isExpired = cancelSecondsRemaining <= 0;
 
   const resetAll = () => {
     setEthicalCancelled(false);
     setSludgeStep(1);
     setSurveyReason('');
     setSludgeCompleted(false);
+    setCancelSecondsRemaining(300);
+  };
+
+  const handleConfirmEthicalCancel = () => {
+    if (isExpired) return;
+    setTimeUsed(300 - cancelSecondsRemaining);
+    setEthicalCancelled(true);
   };
 
   return (
@@ -64,8 +100,58 @@ export const CancellationSandboxModal: React.FC<CancellationSandboxModalProps> =
           </div>
         </div>
 
+        {/* 5-Minute Billing Cancellation Timer */}
+        <div
+          className={`mt-4 p-3 rounded-xl border flex flex-col gap-1.5 transition-colors ${
+            isExpired
+              ? 'bg-red-950/30 border-red-500/50 text-red-200'
+              : cancelSecondsRemaining < 60
+              ? 'bg-amber-950/30 border-amber-500/50 text-amber-200'
+              : 'bg-[#222121] border-[#383838] text-[#e5e2e1]'
+          }`}
+        >
+          <div className="flex items-center justify-between text-xs font-mono-code">
+            <div className="flex items-center gap-1.5">
+              <Clock className={`w-4 h-4 ${isExpired ? 'text-red-400' : 'text-emerald-400'}`} />
+              <span className="font-semibold">
+                {isExpired ? 'Cancellation Window Expired' : 'Billing Cancellation Timer (Under 5 Mins)'}
+              </span>
+            </div>
+            <span
+              className={`font-bold px-2 py-0.5 rounded text-xs ${
+                isExpired
+                  ? 'bg-red-900/60 text-red-300'
+                  : cancelSecondsRemaining < 60
+                  ? 'bg-amber-900/60 text-amber-300'
+                  : 'bg-emerald-950 text-emerald-400 border border-emerald-500/30'
+              }`}
+            >
+              {formattedTime}
+            </span>
+          </div>
+
+          <div className="w-full bg-[#141414] h-1.5 rounded-full overflow-hidden">
+            <div
+              className={`h-full transition-all duration-1000 ${
+                isExpired
+                  ? 'bg-red-500 w-0'
+                  : cancelSecondsRemaining < 60
+                  ? 'bg-amber-400'
+                  : 'bg-emerald-400'
+              }`}
+              style={{ width: `${(cancelSecondsRemaining / 300) * 100}%` }}
+            />
+          </div>
+
+          <p className="text-[11px] text-[#9f9b96]">
+            {isExpired
+              ? 'The 5-minute cancellation authorization window has expired. Please restart to re-authorize.'
+              : 'Active security window: Please complete your cancellation request within 5 minutes.'}
+          </p>
+        </div>
+
         {/* Flow Switcher Tabs */}
-        <div className="mt-4 flex items-center justify-between gap-2 border-b border-[#2a2a2a] pb-3">
+        <div className="mt-3 flex items-center justify-between gap-2 border-b border-[#2a2a2a] pb-3">
           <div className="flex gap-2">
             <button
               onClick={() => {
@@ -108,8 +194,25 @@ export const CancellationSandboxModal: React.FC<CancellationSandboxModalProps> =
         </div>
 
         {/* Content Area */}
-        <div className="mt-5 min-h-[300px] flex flex-col justify-center">
-          {activeTab === 'ethical' ? (
+        <div className="mt-4 min-h-[290px] flex flex-col justify-center">
+          {isExpired ? (
+            <div className="p-6 rounded-xl bg-red-950/20 border border-red-500/40 text-center flex flex-col items-center gap-3">
+              <AlertTriangle className="w-8 h-8 text-red-400" />
+              <h3 className="font-outfit font-bold text-base text-white">
+                Cancellation Window Elapsed (5-Min Limit Reached)
+              </h3>
+              <p className="text-xs text-[#b8b4af] max-w-md">
+                For account authentication security, cancellation sessions expire after 5 minutes of inactivity. Please restart the session to confirm cancellation.
+              </p>
+              <button
+                onClick={resetAll}
+                className="mt-2 px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-[#141414] font-bold text-xs flex items-center gap-1.5"
+              >
+                <RefreshCw className="w-3.5 h-3.5" />
+                <span>Restart 5-Minute Window</span>
+              </button>
+            </div>
+          ) : activeTab === 'ethical' ? (
             /* VARIANT B ETHICAL 1-CLICK */
             <div>
               {!ethicalCancelled ? (
@@ -134,6 +237,10 @@ export const CancellationSandboxModal: React.FC<CancellationSandboxModalProps> =
                       <span className="text-[#888]">Exit or cancellation fees:</span>
                       <span className="text-emerald-400 font-semibold">$0.00 (Guaranteed)</span>
                     </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#888]">Session timer:</span>
+                      <span className="font-mono-code text-emerald-400 font-semibold">{formattedTime} remaining</span>
+                    </div>
                   </div>
                   <div className="pt-2 flex flex-col sm:flex-row items-center justify-end gap-3">
                     <button
@@ -143,7 +250,7 @@ export const CancellationSandboxModal: React.FC<CancellationSandboxModalProps> =
                       Keep Subscription
                     </button>
                     <button
-                      onClick={() => setEthicalCancelled(true)}
+                      onClick={handleConfirmEthicalCancel}
                       className="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-[#141414] font-outfit font-bold text-sm shadow-md transition-all flex items-center justify-center gap-1.5"
                     >
                       <span>Confirm 1-Click Cancellation</span>
@@ -163,7 +270,7 @@ export const CancellationSandboxModal: React.FC<CancellationSandboxModalProps> =
                     Zero retention guilt quizzes, zero telephone calls. Your confirmation receipt has been sent to your primary email with reference code <code className="font-mono-code text-emerald-400">#CAN-8842-ETH</code>.
                   </p>
                   <div className="text-[11px] font-mono-code text-emerald-400/80 bg-emerald-900/20 px-3 py-1 rounded">
-                    Total user time expended: ~3.2 seconds • Friction Index: 0/10
+                    Completed in {Math.floor(timeUsed / 60)}m {timeUsed % 60}s (well under the 5-minute window) • {formattedTime} remaining
                   </div>
                 </div>
               )}
@@ -178,7 +285,7 @@ export const CancellationSandboxModal: React.FC<CancellationSandboxModalProps> =
                     <span className="text-red-400 font-bold">
                       Sludge Stage {sludgeStep} of 4: Retention Friction
                     </span>
-                    <span>Industry standard "Roach Motel"</span>
+                    <span className="text-amber-400">Timer: {formattedTime}</span>
                   </div>
 
                   {sludgeStep === 1 && (
@@ -316,7 +423,7 @@ export const CancellationSandboxModal: React.FC<CancellationSandboxModalProps> =
                     Cancellation Finally Logged (After 4 Friction Walls)
                   </h3>
                   <p className="text-xs text-[#b8b4af] max-w-md">
-                    Estimated drop-off rate during this sludge funnel is &gt;62% (users who abandon cancellation due to fatigue or unavailable telephone hours).
+                    Notice how the multi-layered sludge maze ate away precious time ({formattedTime} remaining of the 5-min window), attempting to push users past their session limit.
                   </p>
                   <div className="text-[11px] font-mono-code text-red-400/80 bg-red-900/20 px-3 py-1 rounded">
                     Total user time expended: ~18–35 minutes • Friction Index: 9.5/10
@@ -327,8 +434,8 @@ export const CancellationSandboxModal: React.FC<CancellationSandboxModalProps> =
           )}
         </div>
 
-        <div className="mt-6 pt-4 border-t border-[#2d2c2b] flex justify-between items-center text-xs text-[#7e7b78]">
-          <span>Academic reference: Thaler (2018) "Nudge, not Sludge", Science 361(6401).</span>
+        <div className="mt-5 pt-3 border-t border-[#2d2c2b] flex justify-between items-center text-xs text-[#7e7b78]">
+          <span>Cancellation security window: 5 minutes. Autonomy standard compliant.</span>
           <button onClick={onClose} className="hover:text-white transition-colors">
             Close Sandbox
           </button>

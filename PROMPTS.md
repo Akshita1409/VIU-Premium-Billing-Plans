@@ -10,7 +10,6 @@
 ## Prompt Trail & Iteration History
 
 ### Prompt 1: Forensic Baseline Scoping & Course Reading Grounding
-- **Timestamp:** 2026-10-18 19:46
 - **Prompt:**
   > "We are auditing Viu's subscription page where they highlight '$8.98/month Save 18%' on a 365-day plan and bury the $107.76 lump sum and overseas merchant bank fees. Grounded in our course readings—specifically Shafir & Thaler (2006) on the mental accounting of delayed consumption and Kahneman (2011, Chapter 34) on 'Costs Are Not Losses' and framing effects—help us build Variant A (baseline sludge) and Variant B (ethical redesign) under the fictional brand name StreamDemo, with URL query switching via `?v=A` and `?v=B`."
 - **AI Output & Proposed Action:**
@@ -23,7 +22,6 @@
 ---
 
 ### Prompt 2: Baseline Sludge Extraction & Asymmetric Defaults
-- **Timestamp:** 2026-10-18 19:48
 - **Prompt:**
   > "Inspect the uploaded Viu screenshots. Extract the exact figures and deceptive cues: 365-day plan ($107.76), 90-day plan ($29.94), 30-day plan ($10.98), and HBO Max bundle ($189.98). Recreate the exact 'Recommended' magenta ribbon, the 24-hour trial trap, and the overseas merchant surcharge. Connect these to Kahneman (2011, Chapters 26 & 27) and Kern & Chugh (2009) on bounded ethicality."
 - **AI Output:**
@@ -34,7 +32,6 @@
 ---
 
 ### Prompt 3: Ethical Redesign Architecture & The Nudge-Not-Sludge Test
-- **Timestamp:** 2026-10-18 19:50
 - **Prompt:**
   > "Implement Variant B following Image 1.png and the 'Cinematic Charcoal' design token specification. Incorporate symmetric container stature between Standalone ($107.76) and Bundle ($189.98), explicit Annual vs Monthly segmented controls, the 3-pillar Fair Billing Guarantee (14-day notice, 1-click cancel, zero hidden surcharges), and the side-by-side comparison matrix. Integrate the course concept of Goal Visibility (Soman & Cheema, 2011; Cryder et al., 2013) to justify the kept feature matrix."
 - **AI Output & Failure Caught [CHECKED & OVERRULED]:**
@@ -45,7 +42,6 @@
 ---
 
 ### Prompt 4: Empirical Test Protocol, Autonomy Simulator & Power Calculations
-- **Timestamp:** 2026-10-18 19:51
 - **Prompt:**
   > "Add an interactive Cancellation Sandbox Modal contrasting Variant B's 1-Click cancel against Variant A's 4-step retention sludge maze (guilt appeals, mandatory survey, retention bribe, and telephone barrier). Ground the cancellation analysis in Berger & Pope (2011) on reference points and goal gradients, and Kern & Chugh (2009) on bounded ethicality under time pressure. Also add IRB #2024-ETH-088 Study Consent, Participant Debrief, and a Side-by-Side comparison mode."
 - **AI Output:**

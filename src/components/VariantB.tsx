@@ -250,7 +250,7 @@ export const VariantB: React.FC<VariantBProps> = ({
               <div className="flex items-center justify-between text-[#a09e9c] text-xs pt-1">
                 <span className="flex items-center gap-1 text-emerald-400">
                   <ShieldCheck className="w-3.5 h-3.5" />
-                  Zero hidden checkout surcharges
+                  10-min rate guarantee • Zero hidden surcharges
                 </span>
                 <span className="text-[#d7c3ae]">
                   {billingCycle === 'annual' ? 'Billed annually' : 'Billed monthly'}
@@ -358,7 +358,10 @@ export const VariantB: React.FC<VariantBProps> = ({
                 <ArrowRight className="w-4 h-4" />
               </button>
               <div className="flex items-center justify-between text-[#a09e9c] text-xs pt-1">
-                <span>Direct activation</span>
+                <span className="text-emerald-400 flex items-center gap-1">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  10-min rate guarantee
+                </span>
                 <span className="text-[#d7c3ae]">
                   {billingCycle === 'annual' ? 'Billed annually' : 'Billed monthly'}
                 </span>
