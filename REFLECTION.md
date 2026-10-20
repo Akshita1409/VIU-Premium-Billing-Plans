@@ -3,7 +3,6 @@
 **Course:** MGMT 6108 — Decision Architecture for Managers  
 **Instructor:** Prof. Sungjong Roh, PhD  
 **Institution:** Singapore Management University (SMU)  
-**IRB Protocol:** #2024-ETH-088  
 **Contributors:** Student Research Group (Initials: [AR], [SR], [KL])  
 **Date:** October 2026
 
