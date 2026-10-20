@@ -1,10 +1,8 @@
 # PROMPTS.md: AI Collaboration Log & Engineering Prompt Trail
 
 **Course:** MGMT 6108 — Decision Architecture for Managers  
-**Instructor:** Prof. Sungjong Roh, PhD  
 **Institution:** Singapore Management University (SMU)  
-**IRB Protocol:** #2024-ETH-088  
-**Contributors:** Student Research Group (Initials: [AR], [SR], [KL])  
+**Contributors:** Akshita Kumar, Lin Xinyu, Vajeeha Farhath Mohamed Jameel, and Yaanipha Vetvitoon  
 **Date:** October 2026
 
 ---

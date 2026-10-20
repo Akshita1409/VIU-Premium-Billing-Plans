@@ -2,10 +2,8 @@
 
 **Course:** MGMT 6108 — Decision Architecture for Managers  
 **Institution:** Singapore Management University (SMU), Lee Kong Chian School of Business  
-**Instructor:** Prof. Sungjong Roh, PhD  
-**IRB Protocol:** #2024-ETH-088  
 **Target Product Audited:** Video-on-Demand Membership Subscription Page (Baseline: Viu Premium Web Platform)  
-**Evaluator Group:** Master in Management (MiM) Research Team (Initials: [AR], [SR], [KL])  
+**Contributors:** Akshita Kumar, Lin Xinyu, Vajeeha Farhath Mohamed Jameel, and Yaanipha Vetvitoon  
 **Prototype Environment:** Live URL switched via `?v=A` (Baseline) and `?v=B` (Ethical Redesign)  
 **Fictional Brand:** `StreamDemo` (Adopted per SMU academic guidelines to eliminate trademark bias and isolate cognitive architecture effects)
 

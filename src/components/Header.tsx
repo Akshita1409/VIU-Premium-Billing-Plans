@@ -108,10 +108,7 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
         </div>
 
-        <div className="hidden lg:flex items-center gap-2 text-[#7e7b78] text-[11px] font-mono-code">
-          <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-          <span>SMU Leaders as Decision Architects • IRB #2024-ETH-088</span>
-        </div>
+
       </div>
 
       {/* Main StreamDemo Brand Navigation */}

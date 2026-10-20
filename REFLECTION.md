@@ -1,9 +1,8 @@
 # REFLECTION.md: AI Collaboration, Critical Thinking & Empirical Test Plan
 
 **Course:** MGMT 6108 — Decision Architecture for Managers  
-**Instructor:** Prof. Sungjong Roh, PhD  
 **Institution:** Singapore Management University (SMU)  
-**Contributors:** Student Research Group (Initials: [AR], [SR], [KL])  
+**Contributors:** Akshita Kumar, Lin Xinyu, Vajeeha Farhath Mohamed Jameel, and Yaanipha Vetvitoon  
 **Date:** October 2026
 
 ---
