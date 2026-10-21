@@ -366,11 +366,16 @@ export const VariantA: React.FC<VariantAProps> = ({
           </div>
         )}
 
-        {/* Sludge Finding 3: Buried Overseas Bank Surcharges & No-Refund Fine Print */}
+        {/* Sludge Finding 3 & 6: Buried Overseas Surcharges & No-Refund Sunk Cost Lock-In */}
         <div className="relative mt-2 p-4 rounded-xl bg-[#171616] border border-[#2b2a29] text-[11px] text-[#7d7973] flex flex-col gap-2 leading-relaxed">
           {showAnnotations && (
-            <div className="absolute -top-3 left-4 px-2 py-0.5 rounded bg-red-950 text-red-300 border border-red-500/50 text-[10px] font-mono-code font-bold">
-              Finding 3: Hidden Overseas Merchant Surcharge &amp; No-Refund Lock-In
+            <div className="absolute -top-3 left-4 flex flex-wrap gap-2 z-10">
+              <span className="px-2 py-0.5 rounded bg-red-950 text-red-300 border border-red-500/50 text-[10px] font-mono-code font-bold">
+                Finding 3: Shrouded Overseas Merchant Surcharge
+              </span>
+              <span className="px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-500/50 text-[10px] font-mono-code font-bold">
+                Finding 6: Non-Refundable Sunk Cost Forfeiture
+              </span>
             </div>
           )}
           <p>

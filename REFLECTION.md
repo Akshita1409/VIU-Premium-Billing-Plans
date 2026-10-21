@@ -32,6 +32,7 @@ Throughout our collaborative prompting sessions with generative AI tools, our te
 - **Hypothesis 1 (Comprehension & Transparency):** Grounded in **Shafir & Thaler (2006)** and **Kahneman (2011, Ch. 34)**, participants exposed to All-In Upfront Pricing (Variant B) will exhibit significantly higher accuracy in identifying the exact dollar amount billed today compared to those exposed to Partitioned Monthly Pricing (Variant A).
 - **Hypothesis 2 (Autonomy & Perceived Manipulation):** Grounded in **Kern & Chugh (2009)** on bounded ethicality and loss framing, participants exposed to Variant A's hidden overseas surcharges and 4-step retention maze will report significantly higher feelings of manipulation and cognitive reactance compared to Variant B's 1-click self-serve flow.
 - **Hypothesis 3 (Sunk Cost Friction):** Grounded in **Kahneman (2011, Ch. 26 & 27)** and **Shafir & Thaler (2006)** on account resuscitation, the 24-hour trial cancellation trap in Variant A will induce greater post-transaction distress than the 14-day advance notice guarantee in Variant B.
+- **Hypothesis 4 (Sunk Cost & Fair Proration):** Grounded in **Shafir & Thaler (2006)** and **Kahneman (2011, Ch. 34)**, providing guaranteed pro-rated refunds and flexible cancellation without penalty in Variant B will significantly decrease consumer perceived lock-in anxiety and increase willingness to recommend the service compared to Variant A's non-refundable 365-day forfeiture clause.
 
 ### 2. Primary Metric & Guardrail Metric
 

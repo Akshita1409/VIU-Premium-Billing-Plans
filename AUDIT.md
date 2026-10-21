@@ -86,6 +86,19 @@
 
 ---
 
+### Finding 6: Sunk Cost Lock-in & Asymmetric Liquidity Forfeiture (Sludge)
+
+1. **Where:** Terms & Conditions Disclosure & Subscription Lock-In Notice (Variant A).
+2. **What the user sees and does:** The user sees the fine print clause: *"No refunds will be provided for any partial or unused portion of the StreamDemo Premium 365 Days Plan if you cancel during an active subscription period."* When a user only needs the service for a 2-month drama season, cancelling at month 3 provides zero pro-rated refund, resulting in 100% forfeiture of the remaining 9–10 months of prepaid funds ($80+ loss).
+3. **Principle with course reading citation:** **Sunk Cost Fallacy & Asymmetric Liquidity Forfeiture** (**Shafir & Thaler, 2006**; **Kahneman, 2011, Chapter 34 "Frames and Reality"**).
+   - *Primary Reading:* Shafir, E., & Thaler, R. H. (2006). "Invest now, drink later, spend never" (Study 4: Local vs. Global Accounting of Wasted Services, pp. 702–704).
+   - *Supporting Reading:* Kahneman, D. (2011). *Thinking, Fast and Slow*, Chapter 34 ("Good Frames: Mental Accounting and the Sunk Cost Fallacy", pp. 370–372).
+4. **Mechanism and whose goal wins:** **Firm wins at user expense (Sludge).** Shafir & Thaler (2006) demonstrate that when consumers pay upfront for a yearly bundle, discontinuing early triggers the aversive feeling of wasted money unless reframed. Variant A exploits the sunk cost fallacy (Kahneman Ch. 34) by imposing a total forfeiture rule, forcing users to remain captive to an unwanted subscription or surrender their prepaid funds, while denying statutory cooling-off rights.
+5. **Severity with its driver:** **Severity 4/5.** Driver: Unfair wealth extraction: penalizes consumers who no longer need the service by denying pro-rated refunds for unconsumed months.
+6. **Repair in Variant B:** Implemented **Guaranteed Pro-Rated Balance Protection & Fair Plan Switching**: Explicitly guaranteed in the Fair Billing box and FAQ that users can cancel or switch plans at any moment, and unused portions of prepaid subscriptions are pro-rated and credited directly to their profile with zero penalty or exit fees.
+
+---
+
 ## 3. Good Existing Nudge Kept & Justification (Rubric Criterion)
 
 ### Kept Nudge: Multi-Device & Feature Specification Grid
@@ -118,6 +131,7 @@ An unethical team might attempt to "re-bias" users by creating a counter-nudge (
 | **F1** | Partitioned monthly framing ($8.98/mo) | All-in upfront total ($107.76/yr billed today) | Shafir & Thaler (2006); Kahneman (2011, Ch. 34) | De-biasing / Mindful |
 | **F2** | Asymmetric "Recommended" ribbon on 365d | Symmetric visual stature & explicit switcher | Kahneman (2011, Ch. 27 & 34); Kern & Chugh (2009) | Status Quo Neutralization |
 | **F3** | Shrouded 3% foreign bank fee | Zero hidden fee guarantee & local processing | Kahneman (2011, Ch. 34: Thaler Surcharge Principle) | All-In Transparency |
-| **F4** | 24-hr trial trap & no-refund lock-in | 14-day advance notice with 1-click cancel | Kahneman (2011, Ch. 26); Shafir & Thaler (2006) | Autonomy Restoration |
+| **F4** | 24-hr trial trap & premature cutoff | 14-day advance notice with 1-click cancel | Kahneman (2011, Ch. 26); Shafir & Thaler (2006) | Autonomy Restoration |
 | **F5** | 4-step retention maze / phone barrier | Instant 1-click self-serve unsubscribe | Berger & Pope (2011); Kern & Chugh (2009) | Sludge Eradication |
+| **F6** | Non-refundable sunk cost forfeiture | Guaranteed pro-rated balance credit | Shafir & Thaler (2006); Kahneman (2011, Ch. 34) | Fair Proration & Liquidity |
 | **Kept** | Feature capability iconography | Granular symmetric comparison matrix | Soman & Cheema (2011); Cryder et al. (2013) | Cognitive Offloading Nudge |

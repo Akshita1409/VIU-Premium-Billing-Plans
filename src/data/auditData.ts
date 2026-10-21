@@ -96,6 +96,25 @@ export const AUDIT_FINDINGS: AuditFinding[] = [
     repairInB:
       'Repaired in Variant B with Self-Serve 1-Click Cancel & Interactive Sandbox (FTC 2024 "Click to Cancel" Standard): Instant 1-click cancellation in Account Settings with zero retention surveys, immediate pro-rated credit, and sandbox verification.',
   },
+  {
+    id: 'F6',
+    where: 'Terms & Conditions Disclosure & Subscription Lock-In Notice (Variant A)',
+    whatUserSeesAndDoes:
+      'The user sees the fine print clause: "No refunds will be provided for any partial or unused portion of the StreamDemo Premium 365 Days Plan if you cancel during an active subscription period." When a user only needs the service for a 2-month drama season, cancelling at month 3 provides zero pro-rated refund, resulting in 100% forfeiture of the remaining 9–10 months of prepaid funds ($80+ loss).',
+    principle:
+      'Sunk Cost Fallacy & Asymmetric Liquidity Forfeiture (Shafir & Thaler, 2006; Kahneman, 2011, Ch. 34)',
+    readingCitation:
+      'Shafir, E., & Thaler, R. H. (2006). "Invest now, drink later, spend never" (Study 4: Local vs. Global Accounting of Wasted Services, pp. 702–704). / Kahneman, D. (2011). Thinking, Fast and Slow, Chapter 34 ("Good Frames: Mental Accounting and the Sunk Cost Fallacy", pp. 370–372).',
+    mechanism:
+      'Shafir & Thaler (2006) demonstrate that when consumers pay upfront for a yearly bundle, discontinuing early triggers the aversive feeling of wasted money unless reframed. Variant A exploits the sunk cost fallacy (Kahneman Ch. 34) by imposing a total forfeiture rule, forcing users to remain captive to an unwanted subscription or surrender their prepaid funds, while denying statutory cooling-off rights.',
+    whoseGoalWins:
+      'Firm wins at user expense (Sludge): The platform retains 100% of upfront annual payments regardless of actual service delivery, bolstering firm cash flow while penalizing early exit.',
+    severity: 4,
+    severityDriver:
+      'Unfair wealth extraction: penalizes consumers who no longer need the service by denying pro-rated refunds for unconsumed months.',
+    repairInB:
+      'Repaired in Variant B with Guaranteed Pro-Rated Balance Protection & Fair Plan Switching: Explicitly guaranteed in the Fair Billing box and FAQ that users can cancel or switch plans at any moment, and unused portions of prepaid subscriptions are pro-rated and credited directly to their profile with zero penalty or exit fees.',
+  },
 ];
 
 export const EXISTING_NUDGE_KEPT: ExistingNudgeKept = {

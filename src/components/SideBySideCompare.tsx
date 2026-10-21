@@ -48,8 +48,8 @@ export const SideBySideCompare: React.FC<SideBySideCompareProps> = ({
           </div>
         </div>
 
-        {/* 5 Behavioral Dimensions Comparison Matrix */}
-        <div className="mt-4 grid grid-cols-2 sm:grid-cols-5 gap-2 text-[11px] font-mono-code">
+        {/* 6 Behavioral Dimensions Comparison Matrix */}
+        <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-[11px] font-mono-code">
           <div className="p-2.5 rounded-lg bg-[#141414] border border-[#2a2a2a] flex flex-col gap-1">
             <span className="text-[#888] font-semibold">1. Pricing Framing</span>
             <span className="text-red-400">A: Partitioned ($8.98)</span>
@@ -70,10 +70,15 @@ export const SideBySideCompare: React.FC<SideBySideCompareProps> = ({
             <span className="text-red-400">A: Shrouded 3% Bank Fee</span>
             <span className="text-emerald-400">B: $0.00 Guaranteed</span>
           </div>
-          <div className="p-2.5 rounded-lg bg-[#141414] border border-[#2a2a2a] flex flex-col gap-1 col-span-2 sm:col-span-1">
+          <div className="p-2.5 rounded-lg bg-[#141414] border border-[#2a2a2a] flex flex-col gap-1">
             <span className="text-[#888] font-semibold">5. Renewal Autonomy</span>
-            <span className="text-red-400">A: 24h Trap &amp; No Refund</span>
+            <span className="text-red-400">A: 24h Trap Cutoff</span>
             <span className="text-emerald-400">B: 14d Advance Notice</span>
+          </div>
+          <div className="p-2.5 rounded-lg bg-[#141414] border border-[#2a2a2a] flex flex-col gap-1">
+            <span className="text-[#888] font-semibold">6. Sunk Cost Policy</span>
+            <span className="text-red-400">A: 100% Forfeited</span>
+            <span className="text-emerald-400">B: Pro-Rated Credit</span>
           </div>
         </div>
       </div>
