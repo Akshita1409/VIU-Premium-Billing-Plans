@@ -2,7 +2,7 @@
 
 **Course:** MGMT 6108 — Decision Architecture for Managers  
 **Institution:** Singapore Management University (SMU), Lee Kong Chian School of Business  
-**Target Product Audited:** Video-on-Demand Membership Subscription Page (Baseline: Viu Premium Web Platform)  
+**Target Product Audited:** Video-on-Demand Membership Subscription Page (Baseline: StreamDemo Premium Web Platform)  
 **Contributors:** Akshita Kumar, Lin Xinyu, Vajeeha Farhath Mohamed Jameel, and Yaanipha Vetvitoon  
 **Prototype Environment:** Live URL switched via `?v=A` (Baseline) and `?v=B` (Ethical Redesign)  
 **Fictional Brand:** `StreamDemo` (Adopted per SMU academic guidelines to eliminate trademark bias and isolate cognitive architecture effects)
@@ -107,7 +107,7 @@
 - **Behavioural Principle & Course Citation:** **Goal Visibility, Tangibility & Cognitive Offloading** (**Soman & Cheema, 2011**; **Cryder et al., 2013**; **Prof. Roh Week 2 Slides 10–16 & 43–44**).
   - *Readings:* Soman, D., & Cheema, A. (2011). Goal Visibility in Promoting Savings. / Cryder, C. et al. (2013). Tangibility Increases Generosity. / Prof. Roh, Week 2 Slides: *"Whittle down overwhelming goals into smaller goals that are concrete and easier to manage."*
 - **Academic Justification:**
-  In digital streaming, consumers face significant cognitive overload when comparing technical specifications across mobile, tablet, and TV environments. The baseline Viu interface included icons summarizing ad-free viewing, offline download allowances, and streaming resolution.
+  In digital streaming, consumers face significant cognitive overload when comparing technical specifications across mobile, tablet, and TV environments. The baseline StreamDemo interface included icons summarizing ad-free viewing, offline download allowances, and streaming resolution.
   
   In Prof. Roh's Week 2 framework, **Goal Visibility** and **Tangibility** assist decision-makers by making abstract features concrete and manageable. Rather than removing these badges, **Variant B expands them into a fully symmetric Granular Plan Comparison table**. This represents a legitimate, welfare-enhancing nudge: it empowers System 2 deliberate evaluation by standardizing technical dimensions across tiers without bias.
 

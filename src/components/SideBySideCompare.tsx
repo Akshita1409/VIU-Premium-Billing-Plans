@@ -27,7 +27,7 @@ export const SideBySideCompare: React.FC<SideBySideCompareProps> = ({
                 Dual-Variant Comparative Audit Screen
               </h2>
               <p className="text-xs sm:text-sm text-[#a09e9c]">
-                Synchronized side-by-side evaluation of Baseline Viu Sludge (Left) vs Ethical Redesign (Right).
+                Synchronized side-by-side evaluation of Baseline StreamDemo Sludge (Left) vs Ethical Redesign (Right).
               </p>
             </div>
           </div>
@@ -90,7 +90,7 @@ export const SideBySideCompare: React.FC<SideBySideCompareProps> = ({
           <div className="bg-red-950/40 px-4 py-2.5 border-b border-red-500/30 flex items-center justify-between text-xs text-red-300 font-bold">
             <div className="flex items-center gap-2">
               <ShieldAlert className="w-4 h-4 text-red-400" />
-              <span>VARIANT A (BASELINE VIU DARK PATTERNS)</span>
+              <span>VARIANT A (BASELINE STREAMDEMO DARK PATTERNS)</span>
             </div>
             <span className="font-mono-code text-[11px] bg-red-900/50 px-2 py-0.5 rounded">
               SLUDGE ARCHITECTURE

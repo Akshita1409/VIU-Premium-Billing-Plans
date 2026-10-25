@@ -114,6 +114,7 @@ export default function App() {
       <CancellationSandboxModal
         isOpen={activeModal === 'cancel_sandbox'}
         onClose={() => setActiveModal('none')}
+        currentVariant={variant}
       />
 
       <AuditInspectorDrawer

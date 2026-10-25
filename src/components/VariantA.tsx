@@ -23,7 +23,7 @@ export const VariantA: React.FC<VariantAProps> = ({
   onOpenModal,
   onSelectPlanForCheckout,
 }) => {
-  // Baseline tab options in Viu
+  // Baseline tab options in StreamDemo
   const [selectedTab, setSelectedTab] = useState<'standalone' | 'bundle'>('standalone');
   const [selectedPlanPeriod, setSelectedPlanPeriod] = useState<'365' | '90' | '30'>('365');
   const [showAnnotations, setShowAnnotations] = useState(true);
@@ -46,7 +46,7 @@ export const VariantA: React.FC<VariantAProps> = ({
             </span>
             <div>
               <div className="font-outfit font-bold text-sm text-[#ffc880] flex items-center gap-2">
-                <span>Variant A Baseline: Replicating Viu Premium Sludge Architecture</span>
+                <span>Variant A Baseline: Replicating StreamDemo Premium Sludge Architecture</span>
                 <span className="text-[11px] font-mono-code px-2 py-0.5 rounded bg-amber-950/80 text-amber-300 border border-amber-600/40">
                   DECEPTIVE NUDGES ACTIVE
                 </span>
@@ -66,7 +66,7 @@ export const VariantA: React.FC<VariantAProps> = ({
           </button>
         </div>
 
-        {/* Tab switch between Standalone & Bundle (As present in baseline Viu) */}
+        {/* Tab switch between Standalone & Bundle (As present in baseline StreamDemo) */}
         <div className="flex items-center justify-center gap-3 pt-2">
           <button
             onClick={() => {
@@ -178,7 +178,7 @@ export const VariantA: React.FC<VariantAProps> = ({
               </button>
             </div>
 
-            {/* Viu-Style Card (Exact replica of screenshot) */}
+            {/* StreamDemo-Style Card (Exact replica of screenshot) */}
             <div className="relative rounded-2xl bg-white text-[#1a1a1a] p-6 shadow-xl border border-gray-200">
               {/* Sludge Finding 1 & 2 Annotation Badges */}
               {showAnnotations && (
@@ -240,16 +240,16 @@ export const VariantA: React.FC<VariantAProps> = ({
                   </div>
                 </div>
 
-                {/* Right: Viu Pink/Orange Gradient Subscribe Button */}
+                {/* Right: StreamDemo Pink/Orange Gradient Subscribe Button */}
                 <div className="shrink-0 flex flex-col items-center">
                   <button
                     onClick={() =>
                       handleSubscribe(
                         selectedPlanPeriod === '365'
-                          ? 'Viu Premium 365 Days Plan'
+                          ? 'StreamDemo Premium 365 Days Plan'
                           : selectedPlanPeriod === '90'
-                          ? 'Viu Premium 90 Days Plan'
-                          : 'Viu Premium 30 Days Plan',
+                          ? 'StreamDemo Premium 90 Days Plan'
+                          : 'StreamDemo Premium 30 Days Plan',
                         selectedPlanPeriod === '365'
                           ? '$8.98/month'
                           : selectedPlanPeriod === '90'
@@ -275,7 +275,7 @@ export const VariantA: React.FC<VariantAProps> = ({
             </div>
           </div>
         ) : (
-          /* BUNDLE TAB (Screenshots 4: HBO Max + Viu Bundle) */
+          /* BUNDLE TAB (Screenshots 4: HBO Max + StreamDemo Bundle) */
           <div className="flex flex-col gap-6">
             <div className="bg-[#1c1b1b] border border-[#2d2c2b] rounded-xl p-5 text-xs text-[#a8a39c] flex flex-col gap-2">
               <h3 className="text-sm font-bold text-[#f5a623]">

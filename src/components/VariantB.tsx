@@ -2,26 +2,32 @@ import React, { useState } from 'react';
 import { ActiveModal, VariantType } from '../types';
 import {
   ShieldCheck,
-  CheckCircle2,
-  MinusCircle,
+  Check,
+  Minus,
   Bell,
   MousePointerClick,
   Receipt,
   Info,
   ChevronDown,
   ChevronUp,
-  Sparkles,
   ArrowRight,
   Tv,
   Film,
   Lock,
-  Layers
+  Calendar,
+  CreditCard,
+  FileCheck
 } from 'lucide-react';
 
 interface VariantBProps {
   onSelectVariant: (variant: VariantType) => void;
   onOpenModal: (modal: ActiveModal) => void;
-  onSelectPlanForCheckout?: (planName: string, monthlyDisplay: string, totalBilled: string, overseasFee: string) => void;
+  onSelectPlanForCheckout?: (
+    planName: string,
+    monthlyDisplay: string,
+    totalBilled: string,
+    overseasFee: string
+  ) => void;
 }
 
 export const VariantB: React.FC<VariantBProps> = ({
@@ -30,13 +36,15 @@ export const VariantB: React.FC<VariantBProps> = ({
   onSelectPlanForCheckout,
 }) => {
   const [billingCycle, setBillingCycle] = useState<'annual' | 'monthly'>('annual');
+  const [selectedPlanId, setSelectedPlanId] = useState<'bundle' | 'standalone'>('bundle');
   const [expandedFaq, setExpandedFaq] = useState<number | null>(0);
 
   const toggleFaq = (idx: number) => {
     setExpandedFaq(expandedFaq === idx ? null : idx);
   };
 
-  const handleSelectPlan = (name: string, monthly: string, total: string) => {
+  const handleSelectPlan = (name: string, monthly: string, total: string, planId: 'bundle' | 'standalone') => {
+    setSelectedPlanId(planId);
     if (onSelectPlanForCheckout) {
       onSelectPlanForCheckout(name, monthly, total, '$0.00 (Local Merchant Processing)');
     }
@@ -44,403 +52,444 @@ export const VariantB: React.FC<VariantBProps> = ({
   };
 
   return (
-    <div className="w-full bg-[#131313] text-[#e5e2e1] pt-24 pb-20 selection:bg-[#ffc880] selection:text-[#452b00]">
-      {/* Top Research Mode Diagnostic Anchor */}
-      <div className="w-full bg-[#1c1b1b] px-4 lg:px-12 py-2 flex flex-wrap items-center justify-between gap-2 border-b border-[#2a2a2a] text-xs">
+    <div className="w-full min-h-screen bg-[#EAF3FA] text-[#172B4D] pt-24 pb-20 selection:bg-[#087E8B]/20 selection:text-[#087E8B]">
+      {/* Top Research Mode Diagnostic Banner (Clean Light-Coloured Banner) */}
+      <div className="w-full bg-[#F0F7FC] px-4 lg:px-12 py-2.5 flex flex-wrap items-center justify-between gap-2 border-b border-[#D5E5F2] text-xs">
         <div className="flex items-center gap-2 flex-wrap font-mono-code text-[11px]">
-          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-[#087E8B]/10 text-[#087E8B] font-semibold border border-[#087E8B]/30">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#087E8B] animate-pulse" />
             PROTOCOL ACTIVE: VARIANT B (ETHICAL REDESIGN)
           </span>
-          <span className="text-[#a09e9c] hidden sm:inline">
-            • Remediating Partitioned Pricing &amp; Asymmetric Defaults
+          <span className="text-[#556987] hidden sm:inline">
+            • Light Visual Theme &amp; De-biased Upfront Information
           </span>
         </div>
 
-        <div className="flex items-center gap-3 text-xs text-[#a09e9c]">
+        <div className="flex items-center gap-3 text-xs text-[#556987]">
           <button
             onClick={() => onSelectVariant('A')}
-            className="hover:text-amber-300 transition-colors flex items-center gap-1"
+            className="hover:text-[#087E8B] font-medium transition-colors flex items-center gap-1"
           >
             Switch to Variant A (?v=A)
           </button>
-          <span className="text-[#353534]">/</span>
+          <span className="text-[#D5E5F2]">|</span>
           <button
             onClick={() => onOpenModal('consent')}
-            className="hover:text-amber-300 transition-colors"
+            className="hover:text-[#087E8B] font-medium transition-colors"
           >
             Study Consent
           </button>
-          <span className="text-[#353534]">/</span>
+          <span className="text-[#D5E5F2]">|</span>
           <button
             onClick={() => onOpenModal('debrief')}
-            className="hover:text-amber-300 transition-colors"
+            className="hover:text-[#087E8B] font-medium transition-colors"
           >
             Debrief Notes
           </button>
         </div>
       </div>
 
-      {/* Main Hero Canvas & Headline Section */}
-      <section className="relative w-full px-4 lg:px-12 pt-10 pb-8 overflow-hidden text-center">
-        {/* Ambient Scrim Backdrop */}
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[840px] h-[340px] bg-[#f5a623]/5 rounded-full blur-[110px] pointer-events-none" />
-        <div className="absolute top-1/4 right-10 w-96 h-96 bg-emerald-500/5 rounded-full blur-[130px] pointer-events-none" />
+      {/* Top Section — Make the choice understandable */}
+      <section className="relative w-full px-4 lg:px-12 pt-10 pb-8 text-center max-w-4xl mx-auto">
+        <h1 className="font-outfit text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#172B4D]">
+          Choose your StreamDemo plan
+        </h1>
 
-        <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center gap-4">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#2a2a2a] text-emerald-400 font-mono-code text-[11px] font-semibold border border-[#383838]">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>TRANSPARENT REVENUE &amp; FAIR BILLING COMMITMENT</span>
-          </div>
+        <p className="mt-2.5 text-base sm:text-lg text-[#556987] max-w-2xl mx-auto leading-relaxed">
+          Compare your options and review the full cost before subscribing.
+        </p>
 
-          <h1 className="font-outfit text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-3xl">
-            StreamDemo Premium Plans
-          </h1>
-
-          <p className="text-base sm:text-lg text-[#d7c3ae] max-w-2xl leading-relaxed">
-            Transparent pricing with no surprise renewals. Change or cancel anytime online in 1 click without retention labyrinths or hidden exit fees.
-          </p>
-
-          {/* Billing Frequency Segmented Switcher */}
-          <div className="mt-4 flex flex-col items-center gap-2">
-            <div
-              className="inline-flex p-1 rounded-xl bg-[#2a2a2a] border border-[#383838] shadow-inner"
-              role="group"
-              aria-label="Billing frequency selection"
+        {/* Compact Billing Frequency Toggle Bar (Restrained Teal Accent) */}
+        <div className="mt-6 flex flex-col items-center gap-2">
+          <div
+            className="inline-flex p-1 rounded-xl bg-[#FFFFFF] border border-[#D5E5F2] shadow-xs"
+            role="group"
+            aria-label="Billing frequency selection"
+          >
+            <button
+              type="button"
+              onClick={() => setBillingCycle('annual')}
+              className={`px-5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center gap-2 ${
+                billingCycle === 'annual'
+                  ? 'bg-[#087E8B] text-[#FFFFFF] shadow-xs'
+                  : 'text-[#556987] hover:text-[#172B4D]'
+              }`}
             >
-              <button
-                type="button"
-                onClick={() => setBillingCycle('annual')}
-                className={`px-5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center gap-2 ${
+              <span>Annual Billing</span>
+              <span
+                className={`px-1.5 py-0.5 rounded text-[10px] font-mono-code font-bold ${
                   billingCycle === 'annual'
-                    ? 'bg-[#f5a623] text-[#141414] shadow-md'
-                    : 'text-[#d7c3ae] hover:text-white'
+                    ? 'bg-[#FFFFFF]/20 text-[#FFFFFF]'
+                    : 'bg-[#EAF3FA] text-[#087E8B]'
                 }`}
               >
-                <span>Annual Billing</span>
-                <span className="px-1.5 py-0.5 rounded bg-[#0e0e0e]/50 text-[#ffc880] text-[10px] font-mono-code">
-                  SAVE 18-20%
-                </span>
-              </button>
+                SAVE 18–20%
+              </span>
+            </button>
 
-              <button
-                type="button"
-                onClick={() => setBillingCycle('monthly')}
-                className={`px-5 py-2 rounded-lg text-xs font-medium transition-all duration-200 flex items-center gap-2 ${
-                  billingCycle === 'monthly'
-                    ? 'bg-[#f5a623] text-[#141414] font-bold shadow-md'
-                    : 'text-[#d7c3ae] hover:text-white'
-                }`}
-              >
-                <span>Monthly Billing</span>
-              </button>
-            </div>
-
-            <span className="text-xs text-[#a09e9c] font-mono-code flex items-center gap-1.5 mt-1">
-              <Lock className="w-3.5 h-3.5 text-emerald-400" />
-              All plan options lock in current rates for 12 months guaranteed
-            </span>
+            <button
+              type="button"
+              onClick={() => setBillingCycle('monthly')}
+              className={`px-5 py-2 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center gap-2 ${
+                billingCycle === 'monthly'
+                  ? 'bg-[#087E8B] text-[#FFFFFF] shadow-xs'
+                  : 'text-[#556987] hover:text-[#172B4D]'
+              }`}
+            >
+              <span>Monthly Billing</span>
+            </button>
           </div>
+
+          <span className="text-xs text-[#556987] font-mono-code flex items-center gap-1.5 mt-1">
+            <Lock className="w-3.5 h-3.5 text-[#087E8B]" />
+            Rates guaranteed for 12 months • Zero price surprises
+          </span>
         </div>
       </section>
 
-      {/* Symmetric Pricing Grid (Equal Weight & All-In Upfront Pricing) */}
+      {/* Middle Section — Simplified Subscription Cards (Equal Visual Stature) */}
       <section className="w-full px-4 lg:px-12 py-6">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-          {/* PLAN 1: Bundle Tier */}
-          <div className="relative flex flex-col justify-between rounded-xl bg-[#201f1f] border border-[#333333] hover:border-[#f5a623]/60 p-6 sm:p-8 transition-all duration-300 hover:bg-[#252424] shadow-xl">
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center justify-between gap-2 flex-wrap">
-                <span className="px-2.5 py-1 rounded bg-[#9a6c00]/30 text-[#f6bd55] font-mono-code text-[11px] font-semibold tracking-wide flex items-center gap-1.5 border border-[#9a6c00]/40">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  COMPLETE STREAMING BUNDLE
-                </span>
-                <span className="text-xs text-[#d7c3ae] flex items-center gap-1">
-                  <Tv className="w-3.5 h-3.5 text-emerald-400" />
-                  4 Simultaneous Screens
-                </span>
-              </div>
-
-              <div>
-                <h2 className="font-outfit text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                  StreamDemo Premium + HBO Max
-                </h2>
-                <p className="text-xs sm:text-sm text-[#d7c3ae] mt-1 leading-relaxed">
-                  The dual cinema pass: premium Asian cinema, Korean dramas, plus global WarnerMedia blockbusters.
-                </p>
-              </div>
-
-              {/* All-In Upfront Pricing Display */}
-              <div className="p-4 rounded-xl bg-[#1c1b1b] border border-[#2e2d2c] flex flex-col gap-1 shadow-inner">
-                <div className="flex items-baseline gap-2 flex-wrap">
-                  <span className="font-outfit text-3xl sm:text-4xl lg:text-5xl text-[#ffc880] font-bold tracking-tight">
-                    {billingCycle === 'annual' ? '$189.98' : '$19.98'}
-                  </span>
-                  <span className="text-sm font-medium text-[#e5e2e1]">
-                    {billingCycle === 'annual' ? '/ year billed today' : '/ month billed monthly'}
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 flex-wrap text-xs">
-                  <span className="text-[#a09e9c]">
-                    {billingCycle === 'annual'
-                      ? 'Equivalent to $15.83/mo'
-                      : 'Standard flexible monthly cadence'}
-                  </span>
-                  {billingCycle === 'annual' && (
-                    <>
-                      <span className="text-[#444]">•</span>
-                      <span className="font-mono-code text-emerald-400 font-semibold">
-                        Save $49.78 vs monthly
-                      </span>
-                    </>
-                  )}
-                </div>
-              </div>
-
-              {/* Feature Breakdown Checklist */}
-              <div className="pt-2">
-                <p className="text-[11px] text-[#9f8e7a] uppercase tracking-wider font-semibold mb-3">
-                  Everything Included:
-                </p>
-                <ul className="flex flex-col gap-2.5 text-xs sm:text-sm text-[#e5e2e1]">
-                  <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                    <span>Full StreamDemo Asian drama, variety &amp; live performance catalog</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                    <span className="font-medium text-white">
-                      Complete HBO Max blockbuster movies &amp; global HBO originals access
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                    <span>4K Ultra HD + Dolby Atmos stream on up to 4 devices simultaneously</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                    <span>Unlimited offline video downloads across registered mobile &amp; tablet apps</span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                    <span>100% ad-free experience with synchronized cross-platform watch history</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Action Area */}
-            <div className="pt-6 mt-4 border-t border-[#2e2d2c] flex flex-col gap-2">
-              <button
-                type="button"
-                onClick={() =>
-                  handleSelectPlan(
-                    'StreamDemo Premium + HBO Max Bundle',
-                    billingCycle === 'annual' ? '$15.83/mo' : '$19.98/mo',
-                    billingCycle === 'annual' ? '$189.98' : '$19.98'
-                  )
-                }
-                className="w-full py-3.5 px-6 rounded-lg bg-[#f5a623] hover:bg-[#ffc55c] text-[#141414] font-outfit font-bold text-base transition-all shadow-md active:scale-[0.99] flex items-center justify-center gap-2"
-              >
-                <span>
-                  {billingCycle === 'annual' ? 'Select Annual Bundle' : 'Select Monthly Bundle'}
-                </span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <div className="flex items-center justify-between text-[#a09e9c] text-xs pt-1">
-                <span className="flex items-center gap-1 text-emerald-400">
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                  10-min rate guarantee • Zero hidden surcharges
-                </span>
-                <span className="text-[#d7c3ae]">
-                  {billingCycle === 'annual' ? 'Billed annually' : 'Billed monthly'}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* PLAN 2: Standalone Membership Tier (Equal Visual Weight) */}
-          <div className="relative flex flex-col justify-between rounded-xl bg-[#201f1f] border border-[#333333] hover:border-[#f5a623]/60 p-6 sm:p-8 transition-all duration-300 hover:bg-[#252424] shadow-xl">
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center justify-between gap-2 flex-wrap">
-                <span className="px-2.5 py-1 rounded bg-[#2a2a2a] text-[#d7c3ae] font-mono-code text-[11px] font-semibold tracking-wide flex items-center gap-1.5 border border-[#3a3a3a]">
-                  <Film className="w-3.5 h-3.5 text-[#ffc880]" />
-                  STANDARD MEMBERSHIP
-                </span>
-                <span className="text-xs text-[#d7c3ae] flex items-center gap-1">
-                  <Tv className="w-3.5 h-3.5 text-emerald-400" />
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+          {/* PLAN 1: Standalone Membership */}
+          <div
+            onClick={() => setSelectedPlanId('standalone')}
+            className={`cursor-pointer relative flex flex-col justify-between rounded-2xl bg-[#FFFFFF] p-6 transition-all duration-200 shadow-sm hover:shadow-md ${
+              selectedPlanId === 'standalone'
+                ? 'border-2 border-[#087E8B] ring-2 ring-[#087E8B]/15'
+                : 'border border-[#D5E5F2]'
+            }`}
+          >
+            {/* Top Indicator */}
+            <div>
+              <div className="flex items-center justify-between gap-2 mb-3 min-h-[24px]">
+                <span className="text-xs text-[#556987] flex items-center gap-1.5 font-medium">
+                  <Tv className="w-4 h-4 text-[#087E8B]" />
                   2 Simultaneous Screens
                 </span>
+                {selectedPlanId === 'standalone' && (
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#087E8B]/10 text-[#087E8B] font-mono-code text-[11px] font-semibold">
+                    Selected plan
+                  </span>
+                )}
               </div>
 
-              <div>
-                <h2 className="font-outfit text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                  StreamDemo Premium Standalone
-                </h2>
-                <p className="text-xs sm:text-sm text-[#d7c3ae] mt-1 leading-relaxed">
-                  Curated access focused entirely on premier Asian episodic fiction, reality broadcasts, and film.
-                </p>
-              </div>
+              {/* Plan Name */}
+              <h2 className="font-outfit text-xl font-bold text-[#172B4D] tracking-tight">
+                StreamDemo Premium Standalone
+              </h2>
+              <p className="text-xs text-[#556987] mt-1">
+                Curated access focused on premier Asian drama series, variety shows, and film.
+              </p>
 
-              {/* All-In Upfront Pricing Display */}
-              <div className="p-4 rounded-xl bg-[#1c1b1b] border border-[#2e2d2c] flex flex-col gap-1 shadow-inner">
+              {/* Price and Billing Frequency Stated Beside */}
+              <div className="mt-4 pt-4 border-t border-[#D5E5F2] flex flex-col gap-1">
                 <div className="flex items-baseline gap-2 flex-wrap">
-                  <span className="font-outfit text-3xl sm:text-4xl lg:text-5xl text-white font-bold tracking-tight">
+                  <span className="font-outfit text-3xl sm:text-4xl font-bold text-[#172B4D] tracking-tight">
                     {billingCycle === 'annual' ? '$107.76' : '$10.98'}
                   </span>
-                  <span className="text-sm font-medium text-[#e5e2e1]">
+                  <span className="text-sm font-medium text-[#344054]">
                     {billingCycle === 'annual' ? '/ year billed today' : '/ month billed monthly'}
                   </span>
                 </div>
-                <div className="flex items-center gap-2 flex-wrap text-xs">
-                  <span className="text-[#a09e9c]">
-                    {billingCycle === 'annual'
-                      ? 'Equivalent to $8.98/mo'
-                      : 'Standard flexible monthly cadence'}
-                  </span>
-                  {billingCycle === 'annual' && (
-                    <>
-                      <span className="text-[#444]">•</span>
-                      <span className="font-mono-code text-emerald-400 font-semibold">
-                        Save $24.00 vs monthly
-                      </span>
-                    </>
+                <div className="flex items-center gap-2 text-xs">
+                  {billingCycle === 'annual' ? (
+                    <span className="text-[#087E8B] font-medium">
+                      Save $24.00 vs monthly (Equivalent to $8.98/mo)
+                    </span>
+                  ) : (
+                    <span className="text-[#556987]">Standard flexible monthly cadence</span>
                   )}
                 </div>
               </div>
 
-              {/* Feature Breakdown Checklist */}
-              <div className="pt-2">
-                <p className="text-[11px] text-[#9f8e7a] uppercase tracking-wider font-semibold mb-3">
-                  Everything Included:
+              {/* Inclusions Checklist */}
+              <div className="mt-5 pt-4 border-t border-[#D5E5F2]">
+                <p className="text-[11px] text-[#556987] uppercase tracking-wider font-semibold mb-3">
+                  Key Inclusions:
                 </p>
-                <ul className="flex flex-col gap-2.5 text-xs sm:text-sm text-[#e5e2e1]">
+                <ul className="flex flex-col gap-2.5 text-xs sm:text-sm text-[#344054]">
                   <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                    <span>Full StreamDemo Asian drama, variety &amp; live performance catalog</span>
+                    <Check className="w-4 h-4 text-[#087E8B] mt-0.5 shrink-0" />
+                    <span>Full Asian drama, variety &amp; live performance catalog</span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
+                    <Check className="w-4 h-4 text-[#087E8B] mt-0.5 shrink-0" />
                     <span>Full HD (1080p) streaming on up to 2 devices simultaneously</span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                    <span>Unlimited offline video downloads across phone and tablet apps</span>
+                    <Check className="w-4 h-4 text-[#087E8B] mt-0.5 shrink-0" />
+                    <span>Unlimited offline video downloads across phone and tablet</span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
+                    <Check className="w-4 h-4 text-[#087E8B] mt-0.5 shrink-0" />
                     <span>100% ad-free experience without commercial interruptions</span>
                   </li>
-                  <li className="flex items-start gap-2.5 text-[#88837e]">
-                    <MinusCircle className="w-4 h-4 text-[#666] mt-0.5 shrink-0" />
-                    <span>HBO Max catalog not included in standalone tier</span>
+                  <li className="flex items-start gap-2.5 text-[#556987]">
+                    <Minus className="w-4 h-4 text-[#556987] mt-0.5 shrink-0" />
+                    <span>HBO Max catalog not included</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            {/* Action Area */}
-            <div className="pt-6 mt-4 border-t border-[#2e2d2c] flex flex-col gap-2">
+            {/* Action Button at Same Vertical Height */}
+            <div className="mt-6 pt-4 border-t border-[#D5E5F2] flex flex-col gap-2">
               <button
                 type="button"
-                onClick={() =>
+                onClick={(e) => {
+                  e.stopPropagation();
                   handleSelectPlan(
                     'StreamDemo Premium Standalone',
                     billingCycle === 'annual' ? '$8.98/mo' : '$10.98/mo',
-                    billingCycle === 'annual' ? '$107.76' : '$10.98'
-                  )
-                }
-                className="w-full py-3.5 px-6 rounded-lg bg-[#2a2a2a] hover:bg-[#353535] text-white font-outfit font-semibold text-base transition-all border border-[#3e3e3e] shadow-md active:scale-[0.99] flex items-center justify-center gap-2"
+                    billingCycle === 'annual' ? '$107.76' : '$10.98',
+                    'standalone'
+                  );
+                }}
+                className={`w-full py-3 px-5 rounded-xl font-outfit font-semibold text-sm transition-all shadow-xs flex items-center justify-center gap-2 ${
+                  selectedPlanId === 'standalone'
+                    ? 'bg-[#087E8B] hover:bg-[#076b77] text-[#FFFFFF]'
+                    : 'bg-[#F0F7FC] hover:bg-[#E2EFFB] text-[#172B4D] border border-[#D5E5F2]'
+                }`}
               >
                 <span>
-                  {billingCycle === 'annual' ? 'Select Annual Premium' : 'Select Monthly Premium'}
+                  {billingCycle === 'annual' ? 'Select Annual Plan' : 'Select Monthly Plan'}
                 </span>
                 <ArrowRight className="w-4 h-4" />
               </button>
-              <div className="flex items-center justify-between text-[#a09e9c] text-xs pt-1">
-                <span className="text-emerald-400 flex items-center gap-1">
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                  10-min rate guarantee
+              <div className="flex items-center justify-between text-[#556987] text-xs pt-0.5">
+                <span>10-min rate guarantee</span>
+                <span>{billingCycle === 'annual' ? 'Billed annually' : 'Billed monthly'}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* PLAN 2: Bundle Tier */}
+          <div
+            onClick={() => setSelectedPlanId('bundle')}
+            className={`cursor-pointer relative flex flex-col justify-between rounded-2xl bg-[#FFFFFF] p-6 transition-all duration-200 shadow-sm hover:shadow-md ${
+              selectedPlanId === 'bundle'
+                ? 'border-2 border-[#087E8B] ring-2 ring-[#087E8B]/15'
+                : 'border border-[#D5E5F2]'
+            }`}
+          >
+            {/* Top Indicator */}
+            <div>
+              <div className="flex items-center justify-between gap-2 mb-3 min-h-[24px]">
+                <span className="text-xs text-[#556987] flex items-center gap-1.5 font-medium">
+                  <Tv className="w-4 h-4 text-[#087E8B]" />
+                  4 Simultaneous Screens
                 </span>
-                <span className="text-[#d7c3ae]">
-                  {billingCycle === 'annual' ? 'Billed annually' : 'Billed monthly'}
+                {selectedPlanId === 'bundle' && (
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#087E8B]/10 text-[#087E8B] font-mono-code text-[11px] font-semibold">
+                    Selected plan
+                  </span>
+                )}
+              </div>
+
+              {/* Plan Name */}
+              <h2 className="font-outfit text-xl font-bold text-[#172B4D] tracking-tight">
+                StreamDemo Premium + HBO Max
+              </h2>
+              <p className="text-xs text-[#556987] mt-1">
+                The dual cinema pass: premium Asian cinema plus global WarnerMedia blockbusters.
+              </p>
+
+              {/* Price and Billing Frequency Stated Beside */}
+              <div className="mt-4 pt-4 border-t border-[#D5E5F2] flex flex-col gap-1">
+                <div className="flex items-baseline gap-2 flex-wrap">
+                  <span className="font-outfit text-3xl sm:text-4xl font-bold text-[#172B4D] tracking-tight">
+                    {billingCycle === 'annual' ? '$189.98' : '$19.98'}
+                  </span>
+                  <span className="text-sm font-medium text-[#344054]">
+                    {billingCycle === 'annual' ? '/ year billed today' : '/ month billed monthly'}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 text-xs">
+                  {billingCycle === 'annual' ? (
+                    <span className="text-[#087E8B] font-medium">
+                      Save $49.78 vs monthly (Equivalent to $15.83/mo)
+                    </span>
+                  ) : (
+                    <span className="text-[#556987]">Standard flexible monthly cadence</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Inclusions Checklist */}
+              <div className="mt-5 pt-4 border-t border-[#D5E5F2]">
+                <p className="text-[11px] text-[#556987] uppercase tracking-wider font-semibold mb-3">
+                  Key Inclusions:
+                </p>
+                <ul className="flex flex-col gap-2.5 text-xs sm:text-sm text-[#344054]">
+                  <li className="flex items-start gap-2.5">
+                    <Check className="w-4 h-4 text-[#087E8B] mt-0.5 shrink-0" />
+                    <span>Full Asian drama, variety &amp; live performance catalog</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <Check className="w-4 h-4 text-[#087E8B] mt-0.5 shrink-0" />
+                    <span className="font-medium text-[#172B4D]">
+                      Complete HBO Max movies &amp; global HBO originals access
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <Check className="w-4 h-4 text-[#087E8B] mt-0.5 shrink-0" />
+                    <span>4K Ultra HD + Dolby Atmos stream on up to 4 devices</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <Check className="w-4 h-4 text-[#087E8B] mt-0.5 shrink-0" />
+                    <span>Unlimited offline video downloads across all registered apps</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <Check className="w-4 h-4 text-[#087E8B] mt-0.5 shrink-0" />
+                    <span>100% ad-free experience with synchronized watch history</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Action Button at Same Vertical Height */}
+            <div className="mt-6 pt-4 border-t border-[#D5E5F2] flex flex-col gap-2">
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleSelectPlan(
+                    'StreamDemo Premium + HBO Max Bundle',
+                    billingCycle === 'annual' ? '$15.83/mo' : '$19.98/mo',
+                    billingCycle === 'annual' ? '$189.98' : '$19.98',
+                    'bundle'
+                  );
+                }}
+                className={`w-full py-3 px-5 rounded-xl font-outfit font-semibold text-sm transition-all shadow-xs flex items-center justify-center gap-2 ${
+                  selectedPlanId === 'bundle'
+                    ? 'bg-[#087E8B] hover:bg-[#076b77] text-[#FFFFFF]'
+                    : 'bg-[#F0F7FC] hover:bg-[#E2EFFB] text-[#172B4D] border border-[#D5E5F2]'
+                }`}
+              >
+                <span>
+                  {billingCycle === 'annual' ? 'Select Annual Plan' : 'Select Monthly Plan'}
                 </span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <div className="flex items-center justify-between text-[#556987] text-xs pt-0.5">
+                <span>10-min rate guarantee</span>
+                <span>{billingCycle === 'annual' ? 'Billed annually' : 'Billed monthly'}</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Ethical Renewal Guarantee & Autonomy Rights Box */}
+      {/* Bottom Section — Clarify Payment Information ("Billing details") */}
       <section className="w-full px-4 lg:px-12 py-8">
-        <div className="max-w-6xl mx-auto rounded-xl bg-[#1c1b1b] border border-[#2e2d2c] p-6 sm:p-8 shadow-xl">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#2a2a2a]">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <div>
-                <h3 className="font-outfit text-xl sm:text-2xl font-bold text-white tracking-tight">
-                  Fair Billing &amp; Renewal Guarantee
-                </h3>
-                <p className="text-xs sm:text-sm text-[#a09e9c]">
-                  We treat your subscription with total institutional transparency.
-                </p>
-              </div>
+        <div className="max-w-5xl mx-auto rounded-2xl bg-[#FFFFFF] border border-[#D5E5F2] p-6 sm:p-8 shadow-sm">
+          {/* Section Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-5 border-b border-[#D5E5F2]">
+            <div>
+              <h3 className="font-outfit text-xl font-bold text-[#172B4D] tracking-tight">
+                Billing details
+              </h3>
+              <p className="text-xs sm:text-sm text-[#556987]">
+                Clear financial and contractual terms for your selected plan.
+              </p>
             </div>
-
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#252525] border border-[#353534] font-mono-code text-[11px] text-[#e5e2e1] shrink-0">
-              <span className="w-2 h-2 rounded-full bg-emerald-400" />
-              FTC Fair Subscription Standard Compliant
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#F0F7FC] border border-[#D5E5F2] text-xs font-mono-code text-[#344054]">
+              <FileCheck className="w-4 h-4 text-[#087E8B]" />
+              <span>Transparent Terms Guarantee</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-            {/* Column 1 */}
-            <div className="flex flex-col gap-2 p-5 rounded-lg bg-[#222121] border border-[#2e2d2c]">
-              <div className="flex items-center gap-2 text-emerald-400 font-outfit font-bold text-base">
-                <Bell className="w-5 h-5" />
-                <h4>14-Day Advance Notice</h4>
+          {/* Structured Financial Breakdown Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-5 text-xs sm:text-sm">
+            {/* Item 1: Amount Charged Today */}
+            <div className="p-4 rounded-xl bg-[#F0F7FC] border border-[#D5E5F2] flex flex-col gap-1">
+              <span className="text-xs font-semibold text-[#556987] uppercase tracking-wider font-mono-code">
+                Amount charged today
+              </span>
+              <span className="font-outfit text-2xl font-bold text-[#172B4D]">
+                {selectedPlanId === 'bundle'
+                  ? billingCycle === 'annual'
+                    ? '$189.98'
+                    : '$19.98'
+                  : billingCycle === 'annual'
+                  ? '$107.76'
+                  : '$10.98'}
+              </span>
+              <span className="text-xs text-[#344054]">
+                All-in upfront net charge. No surprises.
+              </span>
+            </div>
+
+            {/* Item 2: Billing Frequency & Next Date */}
+            <div className="p-4 rounded-xl bg-[#F0F7FC] border border-[#D5E5F2] flex flex-col gap-1">
+              <span className="text-xs font-semibold text-[#556987] uppercase tracking-wider font-mono-code">
+                Billing frequency &amp; next date
+              </span>
+              <span className="font-outfit text-lg font-bold text-[#172B4D]">
+                {billingCycle === 'annual' ? 'Annual (365 days)' : 'Monthly (30 days)'}
+              </span>
+              <span className="text-xs text-[#344054]">
+                Next billing date:{' '}
+                {billingCycle === 'annual' ? 'October 25, 2027' : 'November 25, 2026'}
+              </span>
+            </div>
+
+            {/* Item 3: Additional Fees */}
+            <div className="p-4 rounded-xl bg-[#F0F7FC] border border-[#D5E5F2] flex flex-col gap-1">
+              <span className="text-xs font-semibold text-[#556987] uppercase tracking-wider font-mono-code">
+                Additional fees
+              </span>
+              <span className="font-outfit text-2xl font-bold text-[#087E8B]">$0.00</span>
+              <span className="text-xs text-[#344054]">
+                Local processing. Zero international merchant fees.
+              </span>
+            </div>
+
+            {/* Item 4: Renewal Conditions */}
+            <div className="p-4 rounded-xl bg-[#F0F7FC] border border-[#D5E5F2] flex flex-col gap-1">
+              <div className="flex items-center gap-1.5 text-[#172B4D] font-semibold">
+                <Bell className="w-4 h-4 text-[#087E8B]" />
+                <span>14-day advance renewal notice</span>
               </div>
-              <p className="text-xs sm:text-sm text-[#b8b4af] leading-relaxed">
-                We will email you exactly 14 days before your card is ever charged for renewal. The email includes a direct 1-click renewal cancellation button—no logging in required.
+              <p className="text-xs text-[#344054] leading-relaxed mt-1">
+                You will receive an automated email alert 14 days before any recurring renewal with a direct 1-click cancel button.
               </p>
             </div>
 
-            {/* Column 2 */}
-            <div className="flex flex-col gap-2 p-5 rounded-lg bg-[#222121] border border-[#2e2d2c]">
-              <div className="flex items-center gap-2 text-emerald-400 font-outfit font-bold text-base">
-                <MousePointerClick className="w-5 h-5" />
-                <h4>Self-Serve 1-Click Cancel</h4>
+            {/* Item 5: Cancellation Conditions & Deadlines */}
+            <div className="p-4 rounded-xl bg-[#F0F7FC] border border-[#D5E5F2] flex flex-col gap-1">
+              <div className="flex items-center gap-1.5 text-[#172B4D] font-semibold">
+                <MousePointerClick className="w-4 h-4 text-[#087E8B]" />
+                <span>Self-serve 1-click cancel</span>
               </div>
-              <p className="text-xs sm:text-sm text-[#b8b4af] leading-relaxed">
-                Cancel whenever you want from your Account Settings. No mandatory telephone calls, no waiting queues, and zero multi-step guilt retention quizzes.
+              <p className="text-xs text-[#344054] leading-relaxed mt-1">
+                Cancel anytime directly inside your Account Settings. No phone calls, waiting queues, or retention quizzes.
               </p>
             </div>
 
-            {/* Column 3 */}
-            <div className="flex flex-col gap-2 p-5 rounded-lg bg-[#222121] border border-[#2e2d2c]">
-              <div className="flex items-center gap-2 text-emerald-400 font-outfit font-bold text-base">
-                <Receipt className="w-5 h-5" />
-                <h4>No Hidden Surcharges</h4>
+            {/* Item 6: Pro-rated Balance Credit */}
+            <div className="p-4 rounded-xl bg-[#F0F7FC] border border-[#D5E5F2] flex flex-col gap-1">
+              <div className="flex items-center gap-1.5 text-[#172B4D] font-semibold">
+                <Receipt className="w-4 h-4 text-[#087E8B]" />
+                <span>Fair proration on switching</span>
               </div>
-              <p className="text-xs sm:text-sm text-[#b8b4af] leading-relaxed">
-                The price you see is the absolute total charged today. Never any account initiation fees, surprise currency surcharges, or post-cancellation penalties.
+              <p className="text-xs text-[#344054] leading-relaxed mt-1">
+                If switching from Annual to Monthly or cancelling early, unused prepaid days are credited directly to your profile.
               </p>
             </div>
           </div>
 
-          {/* Cancellation Sandbox Preview Trigger */}
-          <div className="mt-6 pt-4 border-t border-[#2a2a2a] flex flex-col sm:flex-row items-center justify-between gap-3 bg-[#242323] p-4 rounded-lg">
-            <div className="flex items-center gap-2 text-xs text-[#d7c3ae]">
-              <Info className="w-4 h-4 text-[#ffc880] shrink-0" />
+          {/* Interactive Cancellation Simulator Link */}
+          <div className="mt-6 pt-4 border-t border-[#D5E5F2] flex flex-col sm:flex-row items-center justify-between gap-3 bg-[#F0F7FC] p-4 rounded-xl">
+            <div className="flex items-center gap-2 text-xs text-[#344054]">
+              <Info className="w-4 h-4 text-[#087E8B] shrink-0" />
               <span>
-                Want to verify cancellation simplicity right now? You can simulate the 1-click flow anytime in our interactive sandbox.
+                Want to verify cancellation simplicity right now? You can simulate the self-serve 1-click flow in our interactive sandbox.
               </span>
             </div>
             <button
               onClick={() => onOpenModal('cancel_sandbox')}
-              className="px-4 py-2 rounded-md bg-[#2d2c2b] hover:bg-[#3a3938] border border-amber-500/40 text-[#ffc880] font-outfit font-semibold text-xs transition-colors shrink-0 flex items-center gap-1.5"
+              className="px-4 py-2 rounded-lg bg-[#FFFFFF] hover:bg-[#E2EFFB] border border-[#D5E5F2] text-[#087E8B] font-outfit font-semibold text-xs transition-colors shrink-0 flex items-center gap-1.5 shadow-xs"
             >
               <span>Preview Cancellation Flow</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -451,17 +500,17 @@ export const VariantB: React.FC<VariantBProps> = ({
 
       {/* Editorial Catalog Showcase */}
       <section className="w-full px-4 lg:px-12 py-8">
-        <div className="max-w-6xl mx-auto flex flex-col gap-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-2">
+        <div className="max-w-5xl mx-auto flex flex-col gap-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-2 pb-2 border-b border-[#D5E5F2]">
             <div>
-              <span className="font-mono-code text-[11px] text-[#ffc880] uppercase tracking-wider font-semibold">
+              <span className="font-mono-code text-[11px] text-[#087E8B] uppercase tracking-wider font-semibold">
                 Included Production Studios
               </span>
-              <h3 className="font-outfit text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">
+              <h3 className="font-outfit text-2xl sm:text-3xl font-bold text-[#172B4D] tracking-tight mt-0.5">
                 Direct From Leading Asian &amp; Global Creators
               </h3>
             </div>
-            <div className="text-xs text-[#a09e9c] font-mono-code">
+            <div className="text-xs text-[#556987] font-mono-code">
               100% Licensed &amp; Fair Creator Royalty Backed
             </div>
           </div>
@@ -469,79 +518,79 @@ export const VariantB: React.FC<VariantBProps> = ({
           {/* Media Visual Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Visual Card 1 */}
-            <div className="group relative rounded-xl overflow-hidden bg-[#201f1f] border border-[#2e2d2c] hover:border-[#f5a623]/60 transition-all shadow-md flex flex-col">
+            <div className="group relative rounded-2xl overflow-hidden bg-[#FFFFFF] border border-[#D5E5F2] hover:border-[#087E8B] transition-all shadow-xs hover:shadow-md flex flex-col">
               <div
-                className="relative w-full h-52 bg-cover bg-center"
+                className="relative w-full h-48 bg-cover bg-center"
                 style={{
                   backgroundImage: `url('https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=800&q=80')`,
                 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-[#201f1f] via-[#201f1f]/30 to-transparent" />
-                <span className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#0e0e0e]/80 backdrop-blur font-mono-code text-[11px] text-[#ffc880]">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#172B4D]/80 via-transparent to-transparent" />
+                <span className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#172B4D]/85 backdrop-blur font-mono-code text-[10px] text-[#FFFFFF] font-semibold">
                   STREAMDEMO EXCLUSIVE
                 </span>
-                <span className="absolute top-3 right-3 px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-400 font-mono-code text-[11px]">
+                <span className="absolute top-3 right-3 px-2 py-0.5 rounded bg-[#087E8B]/90 text-[#FFFFFF] font-mono-code text-[10px] font-semibold">
                   4K DOLBY
                 </span>
               </div>
               <div className="p-4 flex flex-col gap-1">
-                <h4 className="font-outfit text-lg font-semibold text-white">
+                <h4 className="font-outfit text-base font-bold text-[#172B4D]">
                   The Silk Dynasty Chronicles
                 </h4>
-                <p className="text-xs text-[#a09e9c] line-clamp-2">
+                <p className="text-xs text-[#556987] line-clamp-2">
                   Season 2 Streaming Now. All 24 episodes uncompressed with multi-language subtitle tracks.
                 </p>
               </div>
             </div>
 
             {/* Visual Card 2 */}
-            <div className="group relative rounded-xl overflow-hidden bg-[#201f1f] border border-[#2e2d2c] hover:border-[#f5a623]/60 transition-all shadow-md flex flex-col">
+            <div className="group relative rounded-2xl overflow-hidden bg-[#FFFFFF] border border-[#D5E5F2] hover:border-[#087E8B] transition-all shadow-xs hover:shadow-md flex flex-col">
               <div
-                className="relative w-full h-52 bg-cover bg-center"
+                className="relative w-full h-48 bg-cover bg-center"
                 style={{
                   backgroundImage: `url('https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=800&q=80')`,
                 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-[#201f1f] via-[#201f1f]/30 to-transparent" />
-                <span className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#0e0e0e]/80 backdrop-blur font-mono-code text-[11px] text-[#ffc880]">
-                  KOREAN DRAMA
+                <div className="absolute inset-0 bg-gradient-to-t from-[#172B4D]/80 via-transparent to-transparent" />
+                <span className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#172B4D]/85 backdrop-blur font-mono-code text-[10px] text-[#FFFFFF] font-semibold">
+                  ASIAN DRAMA
                 </span>
-                <span className="absolute top-3 right-3 px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-400 font-mono-code text-[11px]">
-                  NEW EPISODES WEEKLY
+                <span className="absolute top-3 right-3 px-2 py-0.5 rounded bg-[#087E8B]/90 text-[#FFFFFF] font-mono-code text-[10px] font-semibold">
+                  NEW WEEKLY
                 </span>
               </div>
               <div className="p-4 flex flex-col gap-1">
-                <h4 className="font-outfit text-lg font-semibold text-white">
+                <h4 className="font-outfit text-base font-bold text-[#172B4D]">
                   Midnight in District 7
                 </h4>
-                <p className="text-xs text-[#a09e9c] line-clamp-2">
-                  Award-winning crime procedural. Stream live with Seoul broadcast synchronization.
+                <p className="text-xs text-[#556987] line-clamp-2">
+                  Award-winning crime procedural. Stream live with synchronous broadcast captioning.
                 </p>
               </div>
             </div>
 
             {/* Visual Card 3 */}
-            <div className="group relative rounded-xl overflow-hidden bg-[#201f1f] border border-[#2e2d2c] hover:border-[#f5a623]/60 transition-all shadow-md flex flex-col">
+            <div className="group relative rounded-2xl overflow-hidden bg-[#FFFFFF] border border-[#D5E5F2] hover:border-[#087E8B] transition-all shadow-xs hover:shadow-md flex flex-col">
               <div
-                className="relative w-full h-52 bg-cover bg-center"
+                className="relative w-full h-48 bg-cover bg-center"
                 style={{
                   backgroundImage: `url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80')`,
                 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-[#201f1f] via-[#201f1f]/30 to-transparent" />
-                <span className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#0e0e0e]/80 backdrop-blur font-mono-code text-[11px] text-[#f6bd55]">
-                  HBO MAX PARTNER PASS
+                <div className="absolute inset-0 bg-gradient-to-t from-[#172B4D]/80 via-transparent to-transparent" />
+                <span className="absolute top-3 left-3 px-2 py-0.5 rounded bg-[#172B4D]/85 backdrop-blur font-mono-code text-[10px] text-[#FFFFFF] font-semibold">
+                  HBO MAX PASS
                 </span>
-                <span className="absolute top-3 right-3 px-2 py-0.5 rounded bg-emerald-950/80 text-emerald-400 font-mono-code text-[11px]">
-                  BUNDLE ONLY
+                <span className="absolute top-3 right-3 px-2 py-0.5 rounded bg-[#087E8B]/90 text-[#FFFFFF] font-mono-code text-[10px] font-semibold">
+                  BUNDLE TIER
                 </span>
               </div>
               <div className="p-4 flex flex-col gap-1">
-                <h4 className="font-outfit text-lg font-semibold text-white">
+                <h4 className="font-outfit text-base font-bold text-[#172B4D]">
                   House of the Dragon &amp; Dune
                 </h4>
-                <p className="text-xs text-[#a09e9c] line-clamp-2">
-                  Included with StreamDemo + HBO Max Bundle. Unlock thousands of hours of worldwide prestige TV.
+                <p className="text-xs text-[#556987] line-clamp-2">
+                  Included with StreamDemo + HBO Max Bundle. Unlock thousands of hours of global prestige TV.
                 </p>
               </div>
             </div>
@@ -551,12 +600,12 @@ export const VariantB: React.FC<VariantBProps> = ({
 
       {/* Side-by-Side Granular Feature Comparison Table */}
       <section className="w-full px-4 lg:px-12 py-8">
-        <div className="max-w-6xl mx-auto rounded-xl bg-[#201f1f] border border-[#2e2d2c] p-6 sm:p-8 shadow-xl">
+        <div className="max-w-5xl mx-auto rounded-2xl bg-[#FFFFFF] border border-[#D5E5F2] p-6 sm:p-8 shadow-sm">
           <div className="mb-6">
-            <h3 className="font-outfit text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <h3 className="font-outfit text-2xl sm:text-3xl font-bold text-[#172B4D] tracking-tight">
               Granular Plan Comparison
             </h3>
-            <p className="text-xs sm:text-sm text-[#a09e9c] mt-1">
+            <p className="text-xs sm:text-sm text-[#556987] mt-1">
               Symmetric breakdown of features across both subscription tiers.
             </p>
           </div>
@@ -564,92 +613,88 @@ export const VariantB: React.FC<VariantBProps> = ({
           <div className="w-full overflow-x-auto">
             <table className="w-full text-left text-xs sm:text-sm">
               <thead>
-                <tr className="text-[#a09e9c] font-mono-code text-[11px] uppercase tracking-wider bg-[#1c1b1b] border-b border-[#2e2d2c]">
+                <tr className="text-[#556987] font-mono-code text-[11px] uppercase tracking-wider bg-[#F0F7FC] border-b border-[#D5E5F2]">
                   <th className="py-3 px-4 rounded-l-lg">Streaming Feature</th>
-                  <th className="py-3 px-4 font-bold text-[#ffc880]">StreamDemo + HBO Max Bundle</th>
-                  <th className="py-3 px-4 rounded-r-lg font-bold text-white">StreamDemo Standalone</th>
+                  <th className="py-3 px-4 font-bold text-[#087E8B]">StreamDemo + HBO Max Bundle</th>
+                  <th className="py-3 px-4 rounded-r-lg font-bold text-[#172B4D]">StreamDemo Standalone</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#2a2a2a]">
-                <tr className="hover:bg-[#252424] transition-colors">
-                  <td className="py-3.5 px-4 font-medium text-white">
-                    StreamDemo Asian Entertainment Library
+              <tbody className="divide-y divide-[#D5E5F2]">
+                <tr className="hover:bg-[#F0F7FC]/70 transition-colors">
+                  <td className="py-3.5 px-4 font-medium text-[#172B4D]">
+                    Asian Entertainment Library
                   </td>
-                  <td className="py-3.5 px-4 text-emerald-400 font-semibold flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4" /> Complete (Unlimited)
+                  <td className="py-3.5 px-4 text-[#087E8B] font-semibold flex items-center gap-1.5">
+                    <Check className="w-4 h-4" /> Complete (Unlimited)
                   </td>
-                  <td className="py-3.5 px-4 text-emerald-400 font-semibold">
+                  <td className="py-3.5 px-4 text-[#087E8B] font-semibold">
                     <span className="inline-flex items-center gap-1.5">
-                      <CheckCircle2 className="w-4 h-4" /> Complete (Unlimited)
+                      <Check className="w-4 h-4" /> Complete (Unlimited)
                     </span>
                   </td>
                 </tr>
-                <tr className="hover:bg-[#252424] transition-colors">
-                  <td className="py-3.5 px-4 font-medium text-white">
-                    HBO Max Complete Streaming Catalog
+                <tr className="hover:bg-[#F0F7FC]/70 transition-colors">
+                  <td className="py-3.5 px-4 font-medium text-[#172B4D]">
+                    HBO Max Complete Catalog
                   </td>
-                  <td className="py-3.5 px-4 text-emerald-400 font-semibold flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4" /> Included (Full Access)
+                  <td className="py-3.5 px-4 text-[#087E8B] font-semibold flex items-center gap-1.5">
+                    <Check className="w-4 h-4" /> Included (Full Access)
                   </td>
-                  <td className="py-3.5 px-4 text-[#777]">
-                    Not included
-                  </td>
+                  <td className="py-3.5 px-4 text-[#556987]">Not included</td>
                 </tr>
-                <tr className="hover:bg-[#252424] transition-colors">
-                  <td className="py-3.5 px-4 font-medium text-white">
+                <tr className="hover:bg-[#F0F7FC]/70 transition-colors">
+                  <td className="py-3.5 px-4 font-medium text-[#172B4D]">
                     Maximum Video Streaming Resolution
                   </td>
-                  <td className="py-3.5 px-4 text-white font-semibold">
+                  <td className="py-3.5 px-4 text-[#172B4D] font-semibold">
                     4K Ultra HD + HDR10 / Dolby Vision
                   </td>
-                  <td className="py-3.5 px-4 text-white font-semibold">
-                    Full HD (1080p)
-                  </td>
+                  <td className="py-3.5 px-4 text-[#172B4D] font-semibold">Full HD (1080p)</td>
                 </tr>
-                <tr className="hover:bg-[#252424] transition-colors">
-                  <td className="py-3.5 px-4 font-medium text-white">Audio Standards</td>
-                  <td className="py-3.5 px-4 text-[#d7c3ae]">Dolby Atmos + Spatial Audio</td>
-                  <td className="py-3.5 px-4 text-[#d7c3ae]">5.1 Surround Sound</td>
+                <tr className="hover:bg-[#F0F7FC]/70 transition-colors">
+                  <td className="py-3.5 px-4 font-medium text-[#172B4D]">Audio Standards</td>
+                  <td className="py-3.5 px-4 text-[#344054]">Dolby Atmos + Spatial Audio</td>
+                  <td className="py-3.5 px-4 text-[#344054]">5.1 Surround Sound</td>
                 </tr>
-                <tr className="hover:bg-[#252424] transition-colors">
-                  <td className="py-3.5 px-4 font-medium text-white">
+                <tr className="hover:bg-[#F0F7FC]/70 transition-colors">
+                  <td className="py-3.5 px-4 font-medium text-[#172B4D]">
                     Simultaneous Streaming Screens
                   </td>
-                  <td className="py-3.5 px-4 text-white font-semibold">4 Devices at once</td>
-                  <td className="py-3.5 px-4 text-white font-semibold">2 Devices at once</td>
+                  <td className="py-3.5 px-4 text-[#172B4D] font-semibold">4 Devices at once</td>
+                  <td className="py-3.5 px-4 text-[#172B4D] font-semibold">2 Devices at once</td>
                 </tr>
-                <tr className="hover:bg-[#252424] transition-colors">
-                  <td className="py-3.5 px-4 font-medium text-white">
+                <tr className="hover:bg-[#F0F7FC]/70 transition-colors">
+                  <td className="py-3.5 px-4 font-medium text-[#172B4D]">
                     Offline Download Capacity
                   </td>
-                  <td className="py-3.5 px-4 text-emerald-400 font-semibold flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4" /> Unlimited (Device storage limits apply)
+                  <td className="py-3.5 px-4 text-[#087E8B] font-semibold flex items-center gap-1.5">
+                    <Check className="w-4 h-4" /> Unlimited (Device storage limits apply)
                   </td>
-                  <td className="py-3.5 px-4 text-emerald-400 font-semibold">
+                  <td className="py-3.5 px-4 text-[#087E8B] font-semibold">
                     <span className="inline-flex items-center gap-1.5">
-                      <CheckCircle2 className="w-4 h-4" /> Unlimited (Device storage limits apply)
+                      <Check className="w-4 h-4" /> Unlimited (Device storage limits apply)
                     </span>
                   </td>
                 </tr>
-                <tr className="hover:bg-[#252424] transition-colors">
-                  <td className="py-3.5 px-4 font-medium text-white">
+                <tr className="hover:bg-[#F0F7FC]/70 transition-colors">
+                  <td className="py-3.5 px-4 font-medium text-[#172B4D]">
                     Commercials &amp; Ad-Insertion
                   </td>
-                  <td className="py-3.5 px-4 text-emerald-400 font-semibold flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4" /> 100% Ad-Free
+                  <td className="py-3.5 px-4 text-[#087E8B] font-semibold flex items-center gap-1.5">
+                    <Check className="w-4 h-4" /> 100% Ad-Free
                   </td>
-                  <td className="py-3.5 px-4 text-emerald-400 font-semibold">
+                  <td className="py-3.5 px-4 text-[#087E8B] font-semibold">
                     <span className="inline-flex items-center gap-1.5">
-                      <CheckCircle2 className="w-4 h-4" /> 100% Ad-Free
+                      <Check className="w-4 h-4" /> 100% Ad-Free
                     </span>
                   </td>
                 </tr>
-                <tr className="hover:bg-[#252424] transition-colors">
-                  <td className="py-3.5 px-4 font-medium text-white">Cancellation Friction</td>
-                  <td className="py-3.5 px-4 text-emerald-400 font-semibold">
+                <tr className="hover:bg-[#F0F7FC]/70 transition-colors">
+                  <td className="py-3.5 px-4 font-medium text-[#172B4D]">Cancellation Friction</td>
+                  <td className="py-3.5 px-4 text-[#087E8B] font-semibold">
                     1-Click Instant (No surveys)
                   </td>
-                  <td className="py-3.5 px-4 text-emerald-400 font-semibold">
+                  <td className="py-3.5 px-4 text-[#087E8B] font-semibold">
                     1-Click Instant (No surveys)
                   </td>
                 </tr>
@@ -659,14 +704,14 @@ export const VariantB: React.FC<VariantBProps> = ({
         </div>
       </section>
 
-      {/* Frequently Asked Questions */}
+      {/* Frequently Asked Questions (Clean Accordion) */}
       <section className="w-full px-4 lg:px-12 py-8">
         <div className="max-w-4xl mx-auto flex flex-col gap-6">
           <div className="text-center">
-            <h3 className="font-outfit text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <h3 className="font-outfit text-2xl sm:text-3xl font-bold text-[#172B4D] tracking-tight">
               Frequently Asked Questions
             </h3>
-            <p className="text-xs sm:text-sm text-[#a09e9c] mt-1">
+            <p className="text-xs sm:text-sm text-[#556987] mt-1">
               Clear answers with zero ambiguous legal jargon.
             </p>
           </div>
@@ -688,22 +733,22 @@ export const VariantB: React.FC<VariantBProps> = ({
             ].map((faq, i) => (
               <div
                 key={i}
-                className="rounded-xl bg-[#201f1f] border border-[#2e2d2c] p-4 transition-colors hover:border-[#3e3e3e]"
+                className="rounded-xl bg-[#FFFFFF] border border-[#D5E5F2] p-4 transition-colors hover:border-[#087E8B]/40 shadow-xs"
               >
                 <button
                   type="button"
                   onClick={() => toggleFaq(i)}
-                  className="w-full flex items-center justify-between text-left font-outfit text-base font-semibold text-white"
+                  className="w-full flex items-center justify-between text-left font-outfit text-base font-semibold text-[#172B4D]"
                 >
                   <span>{faq.q}</span>
                   {expandedFaq === i ? (
-                    <ChevronUp className="w-5 h-5 text-[#ffc880]" />
+                    <ChevronUp className="w-5 h-5 text-[#087E8B]" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-[#888]" />
+                    <ChevronDown className="w-5 h-5 text-[#556987]" />
                   )}
                 </button>
                 {expandedFaq === i && (
-                  <div className="mt-3 text-xs sm:text-sm text-[#b8b4af] leading-relaxed border-t border-[#2a2a2a] pt-3">
+                  <div className="mt-3 text-xs sm:text-sm text-[#344054] leading-relaxed border-t border-[#D5E5F2] pt-3">
                     {faq.a}
                   </div>
                 )}
@@ -713,28 +758,28 @@ export const VariantB: React.FC<VariantBProps> = ({
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="w-full bg-[#0e0e0e] border-t border-[#222] mt-12 py-8 px-4 lg:px-12 text-xs text-[#8e8a85]">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      {/* Footer (Warm Palette) */}
+      <footer className="w-full bg-[#FFFFFF] border-t border-[#D5E5F2] mt-12 py-8 px-4 lg:px-12 text-xs text-[#556987]">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <span className="font-outfit font-bold text-white text-base">StreamDemo</span>
-            <span className="px-2 py-0.5 rounded bg-[#201f1f] text-emerald-400 font-mono-code text-[10px]">
-              Ethical Streaming Pilot
+            <span className="font-outfit font-bold text-[#172B4D] text-base">StreamDemo</span>
+            <span className="px-2 py-0.5 rounded bg-[#F0F7FC] border border-[#D5E5F2] text-[#087E8B] font-mono-code text-[10px] font-semibold">
+              Variant B Ethical Redesign
             </span>
           </div>
 
           <div className="flex flex-wrap items-center gap-4 text-xs">
-            <button onClick={() => onOpenModal('consent')} className="hover:text-white transition-colors">
+            <button onClick={() => onOpenModal('consent')} className="hover:text-[#087E8B] transition-colors">
               Study Protocol
             </button>
-            <button onClick={() => onOpenModal('debrief')} className="hover:text-white transition-colors">
+            <button onClick={() => onOpenModal('debrief')} className="hover:text-[#087E8B] transition-colors">
               Participant Debrief
             </button>
-            <button onClick={() => onOpenModal('audit_inspector')} className="hover:text-white transition-colors">
+            <button onClick={() => onOpenModal('audit_inspector')} className="hover:text-[#087E8B] transition-colors">
               Behavioural Audit Table
             </button>
-            <span className="text-[#333]">|</span>
-            <span className="text-emerald-400">100% Transparent Billing</span>
+            <span className="text-[#D5E5F2]">|</span>
+            <span className="text-[#087E8B] font-medium">100% Transparent Billing</span>
           </div>
         </div>
       </footer>
